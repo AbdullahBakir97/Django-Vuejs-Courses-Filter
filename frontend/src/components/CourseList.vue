@@ -15,6 +15,7 @@
                 <template #footer>
                     <div class="flex gap-3 mt-1">
                         <Button label="Course Details" class="w-full" />
+                        <router-link label="Course Details" class="w-full" :to="'/' + course.id "></router-link>
                     </div>
                 </template>
             </Card>
