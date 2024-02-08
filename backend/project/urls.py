@@ -19,8 +19,14 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 
+from courses.views import CourseListAPI, CourseDetailAPI, CategoryListAPI
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    
+    path('api/courses/', CourseListAPI.as_view()),
+    path('api/courses/<int:pk>/', CourseDetailAPI.as_view()),
+    path('api/category/', CategoryListAPI.as_view()),
 ]
 
 
