@@ -12,7 +12,8 @@
 <script >
     import CourseList from '@/components/CourseList.vue'
     import CourseFilter from '@/components/CourseFilter.vue'
-    import { courses } from '../temp-data'
+
+    import axios from 'axios'
 
     export default {
         name: 'CoursesView',
@@ -23,11 +24,24 @@
         },
         data(){
             return {
-                courses:courses,
-                filteredCourses:courses
+                courses:[],
+                filteredCourses:[]
             }
         },
+        created(){
+            this.getCourses()
+        },
+
         methods: {
+
+            getCourses(){
+                axios.get('http://localhost:8000/api/courses')
+                .then(response => {
+                    this.courses = response.data
+                    this.filteredCourses = response.data
+                })
+            },
+
             filtercourses(selectedCategory){
                 if (selectedCategory.length == 0){
                     this.filteredCourses = this.courses
